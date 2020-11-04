@@ -1,6 +1,12 @@
+import os
+import pathlib
+import shutil
+from typing import Union, Optional
 from uuid import UUID
-from typing import Union
-from pathlib import Path
+
+
+def get_application_root() -> str:
+    return os.environ.get("PYTHONPATH").split(os.pathsep)[0]
 
 
 def is_dunder(name: str) -> bool:
@@ -26,13 +32,15 @@ class AttrDict(dict):
 
 
 class _TfvarsParser:
-    def __init__(self, path: Path) -> None:
+    def __init__(self, path: pathlib.Path) -> None:
         self.path = path
 
     def read(self) -> dict:
         with open(self.path, "r") as fin:
             c = fin.readlines()
-        extract = lambda i: [el.strip() for el in [line.split("=")[i] for line in c]]
+        extract = lambda i: [
+            el.strip() for el in [line.split("=")[i] for line in c]
+        ]
         keys = extract(0)
         vals = [line[1:-1] for line in extract(1)]
         kvpairs = {k: v for k, v in zip(keys, vals)}
@@ -40,13 +48,24 @@ class _TfvarsParser:
 
 
 class Tfvars:
-    def __init__(self, /, path: Union[str, Path]) -> None:
-        if not isinstance(path, Path):
-            path = Path(path)
+    def __init__(self, /, path: Union[str, pathlib.Path]) -> None:
+        if not isinstance(path, pathlib.Path):
+            path = pathlib.Path(path)
         if not path.exists():
             raise FileNotFoundError(f"The directory {path} does not exist")
         self.path = path
         self.vars = AttrDict(**_TfvarsParser(path).read())
 
 
-__all__ = ["is_dunder", "uuid4_is_valid", "Tfvars"]
+class Path(pathlib.Path):
+    def rmdir(self, recursive: Optional[bool] = True) -> None:
+        if recursive:
+            shutil.rmtree(self)
+        else:
+            super(Path, self).rmdir()
+
+
+__all__ = [
+    "is_dunder", "get_application_root", "uuid4_is_valid",
+    "AttrDict", "Tfvars", "Path"
+]
