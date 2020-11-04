@@ -6,7 +6,8 @@ from sqlalchemy.inspection import inspect
 class _IntrospectorInterface(ABC):
     def __init__(self, obj) -> None:
         self.schema = obj
-        self.name = obj.__tablename__
+        self.tablename = obj.__tablename__
+        self.classname = obj.__name__
 
     @abstractmethod
     def primary_keys(self) -> list:
@@ -30,7 +31,7 @@ class _declBaseIntrospector(_IntrospectorInterface):
 
     def unique_keys(self) -> list:
         return [
-            c.name for c in self.schema.__table__.columns if any(
+            c.name for c in self.schema.c if any(
                 [c.primary_key, c.unique]
             )
         ]
