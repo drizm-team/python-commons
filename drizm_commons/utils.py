@@ -3,6 +3,12 @@ from typing import Union
 from pathlib import Path
 
 
+def is_dunder(name: str) -> bool:
+    if (name[:2] and name[-2:]) in ("__",):
+        return True
+    return False
+
+
 def uuid4_is_valid(uuid: str) -> bool:
     try:
         val = UUID(uuid, version=4)
@@ -43,4 +49,4 @@ class Tfvars:
         self.vars = AttrDict(**_TfvarsParser(path).read())
 
 
-__all__ = ["uuid4_is_valid", "Tfvars"]
+__all__ = ["is_dunder", "uuid4_is_valid", "Tfvars"]
