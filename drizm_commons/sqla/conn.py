@@ -95,18 +95,20 @@ class Database:
             # Always close the session after operations
             session.close()
 
-    def create(self) -> None:
+    def create(self, base_override=None) -> None:
         """ Creates all tables in the current Base """
+        base = base_override or Base
         self.logger.info(
             f"Constructing Database: {str(self.engine.url)}"
         )
-        for table in Base.metadata.sorted_tables:
+        for table in base.metadata.sorted_tables:
             self.logger.info(f"     {table.name}")
-        Base.metadata.create_all(bind=self.engine)
+        base.metadata.create_all(bind=self.engine)
 
-    def destroy(self) -> None:
+    def destroy(self, base_override=None) -> None:
         """ Destroys all tables in the current Base """
-        Base.metadata.drop_all(bind=self.engine)
+        base = base_override or Base
+        base.metadata.drop_all(bind=self.engine)
 
 
 __all__ = ["Database"]
