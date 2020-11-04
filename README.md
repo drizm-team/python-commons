@@ -1,4 +1,5 @@
 # Python Commons
+[![PyPI version](https://badge.fury.io/py/drizm-commons.svg)](https://badge.fury.io/py/drizm-commons)  
 
 This package includes shared code used by
 the Drizm organizations development team.  
@@ -42,3 +43,8 @@ Path utilities
 - Revamped introspection API
 - Provided additional overrides for the
 SQL connection adapter
+
+### 0.2.1
+
+- Added support for datetime JSON
+encoding
