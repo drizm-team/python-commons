@@ -34,3 +34,11 @@ API
 - Added get_root_path and recursive delete
 Path utilities
 - Fixed various bugs
+
+### 0.2.0
+
+- Added full test suite
+- Added testing tools
+- Revamped introspection API
+- Provided additional overrides for the
+SQL connection adapter
