@@ -1,7 +1,7 @@
 import os
 import pathlib
 import shutil
-from typing import Union, Optional
+from typing import Union, Optional, Iterable
 from uuid import UUID
 
 
@@ -13,6 +13,18 @@ def is_dunder(name: str) -> bool:
     if (name[:2] and name[-2:]) in ("__",):
         return True
     return False
+
+
+def all_items_equal(iterable: Iterable) -> bool:
+    if isinstance(iterable, (list, tuple)):
+        return True if len(set(iterable)) == 1 else False
+    raise TypeError("Only list and tuples may be processed")
+
+
+def all_nested_zipped_equal(iterable: Iterable[Iterable]) -> bool:
+    return all(
+        [all_items_equal(subiter) for subiter in zip(*iterable)]
+    )
 
 
 def uuid4_is_valid(uuid: str) -> bool:
@@ -57,7 +69,8 @@ class Tfvars:
         self.vars = AttrDict(**_TfvarsParser(path).read())
 
 
-class Path(pathlib.Path):
+# this is necessary because we can only subclass the concrete implementation
+class Path(type(pathlib.Path())):
     def rmdir(self, recursive: Optional[bool] = True) -> None:
         if recursive:
             shutil.rmtree(self)
@@ -67,5 +80,6 @@ class Path(pathlib.Path):
 
 __all__ = [
     "is_dunder", "get_application_root", "uuid4_is_valid",
+    "all_items_equal", "all_nested_zipped_equal",
     "AttrDict", "Tfvars", "Path"
 ]
