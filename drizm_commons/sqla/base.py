@@ -51,7 +51,7 @@ class Registry:
 
     def table_class_from_tablename(self, tablename: str) -> DeclarativeMeta:
         base = self._resolve_weakref(self._base)
-        assert base.__class__ == Base, \
+        assert issubclass(base, Base), \
             "This method attempts to reverse the automatic " \
             "naming done by this packages custom " \
             "declarative Base." \
@@ -72,4 +72,4 @@ class Registry:
         return self._resolve_weakref(table_ref)
 
 
-__all__ = ["Base", "Registry"]
+__all__ = ["gen_tablenames", "Base", "Registry"]
