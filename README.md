@@ -28,3 +28,9 @@ pass
 API
 - Added table registry
 - Added additional utilities
+
+### 0.1.2
+
+- Added get_root_path and recursive delete
+Path utilities
+- Fixed various bugs
