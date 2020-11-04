@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drizm-commons"
-version = "0.2.0"
+version = "0.2.1"
 description = "Python3 commons for the Drizm organization"
 authors = ["ThaRising <kochbe.ber@gmail.com>"]
 maintainers = ["Dominik Lewandowski <dominik.lewandow@gmail.com>"]
