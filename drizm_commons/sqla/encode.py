@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import DeclarativeMeta
 from ..utils import is_dunder
 
 
-class AlchemyEncoder(json.JSONEncoder):
+class SqlaDeclarativeEncoder(json.JSONEncoder):
     """
     A custom JSON encoder for working with SQLAlchemy
     declarative base instances.
@@ -29,9 +29,12 @@ class AlchemyEncoder(json.JSONEncoder):
             return fields
 
         # If it is not an SQLAlchemy table use the default encoder
-        return super(AlchemyEncoder, self).default(o)
+        return super(SqlaDeclarativeEncoder, self).default(o)
 
     def handle_failure(self, exc: Exception, value: Any):
         """ Can be overridden to provide handling for custom fields """
         # Simply re-raise the exception by default
         raise exc
+
+
+__all__ = ["SqlaDeclarativeEncoder"]
