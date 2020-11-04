@@ -4,8 +4,9 @@ from sqlalchemy.inspection import inspect
 
 
 class _IntrospectorInterface(ABC):
-    def __init__(self, o__) -> None:
-        self.schema = o__
+    def __init__(self, obj) -> None:
+        self.schema = obj
+        self.name = obj.__tablename__
 
     @abstractmethod
     def primary_keys(self) -> list:
@@ -21,8 +22,11 @@ class _IntrospectorInterface(ABC):
 
 
 class _declBaseIntrospector(_IntrospectorInterface):
-    def primary_keys(self) -> list:
-        return inspect(self.schema).primary_key
+    def primary_keys(self, retrieve_constraint: bool = False) -> list:
+        constraints = inspect(self.schema).primary_key
+        if retrieve_constraint:
+            return constraints
+        return [c.key for c in constraints.columns]
 
     def unique_keys(self) -> list:
         return [
@@ -44,11 +48,9 @@ class _declBaseIntrospector(_IntrospectorInterface):
         }
 
 
-def SQLAIntrospector(o__):
-    """
-    Factory returning either a _declBaseIntrospector or _tblIntrospector
-    """
-    return _declBaseIntrospector(o__)
+def SQLAIntrospector(o):
+    """ Factory for returning a matching introspector class """
+    return _declBaseIntrospector(o)
 
 
 __all__ = ["SQLAIntrospector"]
