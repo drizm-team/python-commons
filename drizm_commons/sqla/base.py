@@ -11,16 +11,14 @@ from sqlalchemy.ext.declarative import (
 
 
 def gen_tablenames(name: str) -> str:
+    """ Converts CamelCase class names to snake_case table names """
     return sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
 
 
 class _declared_Base:
     @declared_attr
-    def __tablename__(self):
-        """
-        Automatically sets the name for created tables.\n
-        Converts CamelCase class names to snake_case table names.
-        """
+    def __tablename__(self) -> str:
+        """ Automatically sets the name for created tables """
         return gen_tablenames(self.__name__)
 
     pk = Column(

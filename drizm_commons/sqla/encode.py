@@ -9,8 +9,10 @@ from . import SQLAIntrospector
 
 class SqlaDeclarativeEncoder(json.JSONEncoder):
     """
-    A custom JSON encoder for working with SQLAlchemy
+    A custom JSON encoder for serializing SQLAlchemy
     declarative base instances.
+
+    Will convert datetime formats to ISO8601 compliant strings.
     """
     datetypes = (
         datetime.date,

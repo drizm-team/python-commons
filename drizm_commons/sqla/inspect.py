@@ -91,7 +91,7 @@ class _tblIntrospector(_IntrospectorInterface):
     def __init__(self, obj: Table) -> None:
         super().__init__(obj)
         self.tablename = obj.name
-        self.columns = obj.c
+        self.columns = obj.c  # noqa false-positive write only property
         self.__table__ = obj
 
     @property
