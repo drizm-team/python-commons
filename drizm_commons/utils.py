@@ -35,6 +35,20 @@ def uuid4_is_valid(uuid: str) -> bool:
     return val.hex == uuid
 
 
+def exclude_keys(dictionary: dict, keys: Iterable) -> dict:
+    return {
+        k: v for k, v in dictionary.items() if k not in keys
+    }
+
+
+def all_keys_present(dictionary: dict, keys: Iterable) -> bool:
+    return all(k in dictionary.keys() for k in keys)
+
+
+def uri_is_http(uri: str) -> bool:
+    return True if uri.startswith("http") else False
+
+
 class AttrDict(dict):
     __slots__ = []
     __doc__ = ""
@@ -81,5 +95,6 @@ class Path(type(pathlib.Path())):
 __all__ = [
     "is_dunder", "get_application_root", "uuid4_is_valid",
     "all_items_equal", "all_nested_zipped_equal",
+    "exclude_keys", "all_keys_present", "uri_is_http",
     "AttrDict", "Tfvars", "Path"
 ]
