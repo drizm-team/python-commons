@@ -48,3 +48,9 @@ SQL connection adapter
 
 - Added support for datetime JSON
 encoding
+
+### 0.2.2
+
+- Improved in-code documentation
+- Integrated additional utils from
+drizm-django-commons
