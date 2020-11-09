@@ -22,6 +22,49 @@ Import like so:
 
 ## Documentation
 
+### Utilities
+
+**Convinience Functions:**  
+````python
+from drizm_commons.utils import *
+
+
+# Check whether function name is dunder
+is_dunder("__name__")  # True
+
+# Check if a given string is a valid UUIDv4
+uuid4_is_valid("myvalue")  # False
+
+# Check if a URL is valid and the contents URL-Safe
+url_is_http("https://myapp.com/")  # True
+
+# Get the current applications root path
+Path(get_application_root())
+````
+
+**Path with extra features:**
+````python
+from drizm_commons.utils import Path
+
+# Recursively delete a folder
+path = Path(__file__).parent
+path.rmdir(recursive=True)
+````
+
+**Cache last passed parameter:**
+````python
+from drizm_commons.utils import memoize
+
+
+@memoize
+def foo(a):
+    return a
+
+
+foo(3)  # 3
+foo()  # 3
+````
+
 ### Introspection
 
 ````python
@@ -34,10 +77,7 @@ table = SQLAIntrospector(my_table_instance)
 table.tablename  # get the name of the table
 table.classname  # get the classname of the declarative instance
 table.columns  # get all SQLA fields of the class
-
-""" Methods """
-table.primary_keys()
-table.primary_keys(retrieve_constraint=True)
+table.column_attrs  # get all SQLA fields + property and hybrid_property of the class
 ````
 
 ## Changelog
@@ -74,3 +114,26 @@ encoding
 - Improved in-code documentation
 - Integrated additional utils from
 drizm-django-commons
+
+### 0.3.0
+
+- Added introspection capabilities 
+for property and SQLAlchemy's
+hybrid_property
+- SQLAEncoder now respects property
+and hybrid_property on SQLA declarative
+instances
+- Additional customizability hooks
+for custom fields or data handling
+- Support for JSON-Encoding table
+instances
+- Added SQLA as optional dependency
+- Added additional testing utilities
+
+### 0.3.1
+
+- Improved code documentation
+- Added docs
+- Added memoize function decorator
+to cache last previously passed
+function parameter
