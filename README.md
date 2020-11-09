@@ -142,3 +142,7 @@ function parameter
 
 - Fixed issue with introspection API
 picking up validation methods
+
+### 0.3.3
+
+- Added additional tests and bugfixes
