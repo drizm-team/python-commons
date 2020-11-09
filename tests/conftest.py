@@ -1,4 +1,6 @@
 import pytest
+from sqlalchemy.ext.hybrid import hybrid_property
+
 from drizm_commons.sqla import Database
 import sqlalchemy as sqla
 from sqlalchemy.ext.declarative import declarative_base
@@ -15,6 +17,14 @@ class User(Base):
     )
     name = sqla.Column(sqla.String)
     age = sqla.Column(sqla.Integer)
+
+    @property
+    def something(self):
+        return 42
+
+    @hybrid_property
+    def something_else(self):
+        return 13
 
 
 @pytest.fixture(scope="class")
