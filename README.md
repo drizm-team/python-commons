@@ -137,3 +137,8 @@ instances
 - Added memoize function decorator
 to cache last previously passed
 function parameter
+
+### 0.3.2
+
+- Fixed issue with introspection API
+picking up validation methods
