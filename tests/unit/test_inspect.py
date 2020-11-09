@@ -7,7 +7,11 @@ from drizm_commons.sqla.inspect import (
     _declClassIntrospector,
     _tblIntrospector
 )
-from drizm_commons.utils import all_items_equal, all_nested_zipped_equal
+from drizm_commons.utils import (
+    all_items_equal,
+    all_nested_zipped_equal,
+    all_items_present
+)
 
 
 @pytest.fixture(scope="class", autouse=True)
@@ -41,7 +45,7 @@ class TestIntrospection:
         with pytest.raises(TypeError):
             SQLAIntrospector(object())
 
-    def test020_attrs(self):
+    def test030_attrs(self):
         declarative_instance = SQLAIntrospector(self.declarative_instance)
         declarative_class = SQLAIntrospector(self.declarative_class)
         table_instance = SQLAIntrospector(self.table_instance)
@@ -50,6 +54,15 @@ class TestIntrospection:
         with pytest.raises(NotImplementedError):
             table_instance.classname  # noqa statement has no effect
         assert declarative_instance.classname == declarative_class.classname
+
+        # test column_attrs
+        with pytest.raises(NotImplementedError):
+            table_instance.column_attrs  # noqa statement has no effect
+        assert declarative_instance.column_attrs == declarative_class.column_attrs
+        assert all_items_present(
+            declarative_instance.column_attrs,
+            ("something", "something_else")
+        )
 
         # test the other attributes
         attrlist = ("__table__", "tablename", "columns")
@@ -63,6 +76,10 @@ class TestIntrospection:
             else:
                 keys = [[c.key for c in columns] for columns in results]
                 assert all_nested_zipped_equal(keys)
+                assert not all_items_present(
+                    keys[0],
+                    ("something", "something_else")
+                )
 
     def test030_methods(self):
         declarative_instance = SQLAIntrospector(self.declarative_instance)
