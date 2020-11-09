@@ -45,6 +45,10 @@ def all_keys_present(dictionary: dict, keys: Iterable) -> bool:
     return all(k in dictionary.keys() for k in keys)
 
 
+def all_items_present(list_: Union[list, tuple], keys: Iterable) -> bool:
+    return all(k in list_ for k in keys)
+
+
 def uri_is_http(uri: str) -> bool:
     return True if uri.startswith("http") else False
 
@@ -94,7 +98,7 @@ class Path(type(pathlib.Path())):
 
 __all__ = [
     "is_dunder", "get_application_root", "uuid4_is_valid",
-    "all_items_equal", "all_nested_zipped_equal",
+    "all_items_equal", "all_nested_zipped_equal", "all_items_present",
     "exclude_keys", "all_keys_present", "uri_is_http",
     "AttrDict", "Tfvars", "Path"
 ]
