@@ -10,15 +10,35 @@ modify it to your liking.
 
 ## Usage
 
-Install:  
+Basic Install (utils only):  
 >pip install drizm-commons
 
+
+Full install (SQLAlchemy features available):  
+>pip install drizm-commons[sqla]
+
 Import like so:  
-import drizm_commons
+*import drizm_commons*
 
 ## Documentation
 
-pass
+### Introspection
+
+````python
+from drizm_commons.inspect import SQLAIntrospector
+
+
+table = SQLAIntrospector(my_table_instance)
+
+""" Attributes """
+table.tablename  # get the name of the table
+table.classname  # get the classname of the declarative instance
+table.columns  # get all SQLA fields of the class
+
+""" Methods """
+table.primary_keys()
+table.primary_keys(retrieve_constraint=True)
+````
 
 ## Changelog
 
