@@ -63,6 +63,7 @@ class TestIntrospection:
             declarative_instance.column_attrs,
             ("something", "something_else")
         )
+        assert "validate_name" not in declarative_instance.column_attrs
 
         # test the other attributes
         attrlist = ("__table__", "tablename", "columns")
@@ -78,7 +79,7 @@ class TestIntrospection:
                 assert all_nested_zipped_equal(keys)
                 assert not all_items_present(
                     keys[0],
-                    ("something", "something_else")
+                    ("something", "something_else", "validate_name")
                 )
 
     def test030_methods(self):

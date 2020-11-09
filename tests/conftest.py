@@ -1,5 +1,6 @@
 import pytest
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import validates
 
 from drizm_commons.sqla import Database
 import sqlalchemy as sqla
@@ -25,6 +26,10 @@ class User(Base):
     @hybrid_property
     def something_else(self):
         return 13
+
+    @validates("name")
+    def validate_name(self, _, v) -> str:
+        return v
 
 
 @pytest.fixture(scope="class")
