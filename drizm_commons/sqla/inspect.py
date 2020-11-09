@@ -42,9 +42,13 @@ class _IntrospectorInterface(ABC):
             "_sa_class_manager"  # class state manager
         )
         attrs = [
-            attr for attr in dir(self.schema) if not is_dunder(
+            attr for attr in dir(
+                self.schema
+            ) if not is_dunder(
                 attr
-            ) and not callable(attr) and attr not in remove_keys
+            ) and not callable(
+                getattr(self.schema, attr)
+            ) and attr not in remove_keys
         ]
         return attrs
 
