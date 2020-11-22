@@ -1,6 +1,7 @@
 import os
 import pathlib
 import shutil
+import re
 from collections import OrderedDict
 from functools import wraps
 from typing import Union, Optional, Iterable
@@ -111,7 +112,12 @@ class AttrDict(dict):
     __slots__ = []
 
     def __getattr__(self, item):
-        return super(AttrDict, self).__getitem__(item)
+        try:
+            return super(AttrDict, self).__getitem__(item)
+        except KeyError:
+            # we need to do this so attribute access
+            # does not throw a key error
+            raise AttributeError from None
 
 
 class _TfvarsParser:
@@ -121,14 +127,46 @@ class _TfvarsParser:
 
     def read(self) -> dict:
         with open(self.path, "r") as fin:
-            c = fin.readlines()
-        extract = lambda i: [
-            el.strip() for el in [line.split("=")[i] for line in c]
-        ]
-        keys = extract(0)
-        vals = [line[1:-1] for line in extract(1)]
-        kvpairs = {k: v for k, v in zip(keys, vals)}
-        return kvpairs
+            c = [
+                line for line in fin.readlines() if not self._ignore_line(line) and line
+            ]
+
+        attrs = {
+            self._make_name_safe(l[0]): self._guess_type(l[1]) for l in [
+                [e.strip() for e in line.split("=")] for line in c
+            ]
+        }
+        return attrs
+
+    # noinspection PyMethodMayBeStatic
+    def _ignore_line(self, line: str) -> bool:
+        # Case for comments
+        if line.strip().startswith(("/", "*", "#")):
+            return True
+
+        # Cannot be a key value block if there is no '='
+        if "=" not in line:
+            return True
+
+        return False
+
+    # noinspection PyMethodMayBeStatic
+    def _make_name_safe(self, key: str) -> str:
+        # If it is a key value block, any - must be converted to _
+        return key.replace("-", "_").lower()
+
+    # noinspection PyMethodMayBeStatic
+    def _guess_type(self, val: str) -> Union[str, int, float]:
+        if val.isdigit():
+            return int(val)
+        else:
+            try:
+                return float(val)
+            except ValueError:
+                pass
+        if any(v in val for v in ["'", '"']):
+            return val[1:-1]
+        return val
 
 
 class Tfvars:
