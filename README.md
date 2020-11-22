@@ -146,3 +146,8 @@ picking up validation methods
 ### 0.3.3
 
 - Added additional tests and bugfixes
+
+### 0.3.4
+
+- Added support for comments and
+special character parsing to Tfvars
