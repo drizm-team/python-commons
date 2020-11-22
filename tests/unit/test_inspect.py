@@ -14,7 +14,7 @@ from drizm_commons.utils import (
 )
 
 
-@pytest.fixture(scope="class", autouse=True)
+@pytest.fixture(scope="class")
 def _get_test_data(request, get_db):
     self = request.cls
     self.declarative_class = User
