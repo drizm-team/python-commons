@@ -22,6 +22,21 @@ Import like so:
 
 ## Documentation
 
+### Google Cloud Tools
+
+````python
+from drizm_commons.google import force_obtain_id_token
+from google.oauth2 import service_account
+
+
+auth = service_account.IDTokenCredentials.from_service_account_file(
+    "/path/to/svc.json",
+    target_audience="https://example.com/"
+)
+token = force_obtain_id_token(auth)
+# returns something like 'ey....', only access token
+````
+
 ### Utilities
 
 **Convinience Functions:**  
@@ -151,3 +166,8 @@ picking up validation methods
 
 - Added support for comments and
 special character parsing to Tfvars
+
+### 0.4.0
+
+- Added method to force obtain
+GoogleCloudPlatform Id-Tokens
