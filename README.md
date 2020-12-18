@@ -1,28 +1,48 @@
-# Python Commons
+# Drizm Python Commons
 [![PyPI version](https://badge.fury.io/py/drizm-commons.svg)](https://badge.fury.io/py/drizm-commons)  
 
-This package includes shared code used by
+This package contains shared code used by
 the Drizm organizations development team.  
 
-It is not intended for public usage but you
-may still download, redistribute or 
-modify it to your liking.
+It is not intended for public usage,
+but you may still download,
+redistribute or modify it to your liking.
 
-## Usage
+## Requirements
+
+Python 3.8 supported.
+
+## Installation
 
 Basic Install (utils only):  
->pip install drizm-commons
+``pip install drizm-commons``
 
+Install SQLAlchemy features:  
+``pip install drizm-commons[sqla]``  
+Install Google-Cloud utils:  
+``pip install drizm-commons[google]``  
+Install everything:  
+``pip install drizm-commons[sqla,google]``
 
-Full install (SQLAlchemy features available):  
->pip install drizm-commons[sqla]
-
-Import like so:  
+Import as:  
 *import drizm_commons*
 
-## Documentation
+## Features
 
-### Google Cloud Tools
+- GCP Utilities
+- Testing Utilities
+- Extras for working with Terraform
+- Basic Introspector for various
+SQLAlchemy classes
+
+## Google Cloud Tools
+
+**import drizm_commons.google**
+
+### force_obtain_id_token()
+
+Can be used to obtain an OIDC-Token for authenticating
+against GoogleCloud services.
 
 ````python
 from drizm_commons.google import force_obtain_id_token
@@ -34,10 +54,33 @@ auth = service_account.IDTokenCredentials.from_service_account_file(
     target_audience="https://example.com/"
 )
 token = force_obtain_id_token(auth)
-# returns something like 'ey....', only access token
+# Returns an access token with the structure 'ey....'
 ````
 
-### Utilities
+### TestStorageBucket
+
+Used to generate a V4 Signed-URL for use with GCS.  
+This can also be done using the GoogleCloudStorage
+
+````python
+from drizm_commons.google import TestStorageBucket
+from google.oauth2 import service_account
+
+credentials = service_account.Credentials.from_service_account_file(
+    "path/to/svc.json"
+)
+test_bucket = TestStorageBucket(
+    project_id="your-project-id",
+    credentials=credentials
+)
+test_bucket.create()
+
+# ... do whatever you need to test ...
+
+test_bucket.destroy()
+````
+
+## Utilities
 
 **Convinience Functions:**  
 ````python
@@ -80,7 +123,7 @@ foo(3)  # 3
 foo()  # 3
 ````
 
-### Introspection
+## SQLA Introspection
 
 ````python
 from drizm_commons.inspect import SQLAIntrospector
@@ -171,3 +214,15 @@ special character parsing to Tfvars
 
 - Added method to force obtain
 GoogleCloudPlatform Id-Tokens
+
+### 0.4.1
+
+- Added function to convert
+CamelCase to snake_case
+
+### 0.4.2
+
+- Added TestStorageBucket
+- Updated docs
+- Added camelCase to snake_case
+name converter
