@@ -12,7 +12,7 @@ from .base import Base
 class Database:
     __slots__ = ["engine", "_Session"]
     _Session: sessionmaker
-    logger: ClassVar[Logger] = getLogger()
+    logger: ClassVar[Logger] = getLogger(__name__)
 
     def __init__(self, /,
                  conn_args: dict = None, *,
@@ -22,7 +22,8 @@ class Database:
                  password: str = None,
                  port: int = None,
                  database_name: str = None,
-                 extra_engine_args: dict = None) -> None:
+                 extra_engine_args: dict = None
+                 ) -> None:
         kwargs = locals()
         kwargs.pop("conn_args")
         kwargs = {k: v for k, v in kwargs.items() if v}

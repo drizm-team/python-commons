@@ -1,18 +1,20 @@
 from abc import ABC, abstractmethod
 from inspect import isclass
-from typing import Union
+from typing import Union, Optional
 
 from sqlalchemy import Table
 from sqlalchemy.inspection import inspect
 from sqlalchemy.orm.exc import UnmappedClassError
 from sqlalchemy.orm.util import class_mapper
 
-from ..utils import is_dunder
+from ..testing.truthiness import is_dunder
 
 
 def is_mapped_class(cls) -> bool:
+    """ Check whether a given class has been mapped by SQLAlchemy """
     if not isclass(cls):
         return False
+
     try:
         class_mapper(cls)
     except UnmappedClassError:
@@ -32,10 +34,19 @@ class _IntrospectorInterface(ABC):
     @property
     @abstractmethod
     def classname(self):
+        """ Name of the Declarative Base class if available """
         pass
 
     @property
     def column_attrs(self):
+        """
+        Outputs all attributes of a mapped class,
+        except for properties, dunders and methods, as well as
+        some of the SQLAlchemy specific attributes.
+
+        This will include all columns that SQLAlchemy uses,
+        but also attributes that the user has placed themselves.
+        """
         remove_keys = (
             "metadata",  # ref to DeclarativeMeta
             "_decl_class_registry",  # declarative registry
@@ -52,13 +63,25 @@ class _IntrospectorInterface(ABC):
         ]
         return attrs
 
-    def primary_keys(self, retrieve_constraint: bool = False) -> list:
+    def primary_keys(self, retrieve_constraint: Optional[bool] = False) -> list:
+        """
+        Return a list of the names of all primary key columns of the model.
+
+        :param retrieve_constraint: If this is set to true,
+        the actual SQLA constraint objects will be returned as a list
+        """
         constraints = inspect(self.__table__).primary_key
         if retrieve_constraint:
             return constraints
+
         return [c.key for c in constraints.columns]
 
-    def unique_keys(self) -> list:
+    def unique_keys(self, include_pks: Optional[bool] = True) -> list:
+        attrs_to_check = ["unique"]
+
+        if include_pks:
+            attrs_to_check.append("primary_key")
+
         return [
             c.name for c in self.columns if any(
                 [c.primary_key, c.unique]
