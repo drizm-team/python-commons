@@ -1,9 +1,17 @@
+"""
+A wrapper around a .tfvars file.
+
+````python
+from drizm_commons.utils.tf import Tfvars
+````
+"""
 from pathlib import Path
 from typing import Union
 
 
 class _TfvarsParser:
-    """ A parser class for *.tfvars files """
+    """ A parser class for *.tfvars files. """
+
     def __init__(self, path: Path) -> None:
         self.path = path
 
@@ -14,9 +22,8 @@ class _TfvarsParser:
             ]
 
         attrs = {
-            self._make_name_safe(l[0]): self._guess_type(l[1]) for l in [
-                [e.strip() for e in line.split("=")] for line in c
-            ]
+            l[0]: self._guess_type(l[1])
+            for l in [[e.strip() for e in line.split("=")] for line in c]
         }
         return attrs
 
@@ -33,11 +40,6 @@ class _TfvarsParser:
         return False
 
     # noinspection PyMethodMayBeStatic
-    def _make_name_safe(self, key: str) -> str:
-        # If it is a key value block, any - must be converted to _
-        return key.replace("-", "_").lower()
-
-    # noinspection PyMethodMayBeStatic
     def _guess_type(self, val: str) -> Union[str, int, float]:
         if val.isdigit():
             return int(val)
@@ -52,7 +54,8 @@ class _TfvarsParser:
 
 
 class Tfvars:
-    """ Wrapper for a parsed *.tfvars file """
+    """ Wrapper for a parsed *.tfvars file. """
+
     def __init__(self, /, path: Union[str, Path]) -> None:
         from .type import AttrDict
 
