@@ -1,0 +1,39 @@
+site_name: Drizm Commons
+copyright: This package and its documentation are licensed under the MIT License.
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: false
+            show_root_heading: true
+        watch:
+          - drizm_commons
+
+repo_url: https://github.com/drizm-team/python-commons
+repo_name: drizm/python-commons
+
+nav:
+    - Overview: index.md
+    - Utilities:
+      - "General Utilities": utils.md
+      - "Testing Utilities": testing.md
+      - "Custom Types": types.md
+    - Generating Test Data:
+      - "Primitive Data": faking.md
+    - Terraform Utilities: terraform.md
+    - Cookbook: cookbook.md
+    - Changelog: changes.md
