@@ -15,11 +15,8 @@ class SqlaDeclarativeEncoder(json.JSONEncoder):
 
     Supports ISO8601 compliant datetime encoding.
     """
-    datetypes = (
-        datetime.date,
-        datetime.datetime,
-        datetime.timedelta
-    )
+
+    datetypes = (datetime.date, datetime.datetime, datetime.timedelta)
 
     def default(self, o: Any) -> Any:
         # Check if the object is an SQLAlchemy declarative instance
@@ -45,9 +42,7 @@ class SqlaDeclarativeEncoder(json.JSONEncoder):
 
     def _process_column(self, o: Any, column_name: str):
         # Obtain the value of the column and check for custom encoding
-        data = self.dump(
-            getattr(o, column_name)
-        )
+        data = self.dump(getattr(o, column_name))
         try:  # Try JSON encoding the field
             json.dumps(data)
         except TypeError as exc:  # if it fails resort to failure hook

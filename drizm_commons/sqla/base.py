@@ -3,11 +3,7 @@ from re import sub
 from typing import Any
 
 from sqlalchemy import MetaData, Integer, Column, Sequence
-from sqlalchemy.ext.declarative import (
-    declarative_base,
-    declared_attr,
-    DeclarativeMeta
-)
+from sqlalchemy.ext.declarative import declarative_base, declared_attr, DeclarativeMeta
 
 
 def gen_tablenames(name: str) -> str:
@@ -21,11 +17,7 @@ class _declared_Base:
         """ Automatically sets the name for created tables """
         return gen_tablenames(self.__name__)
 
-    pk = Column(
-        Integer(),
-        Sequence("%(table_name)s_id_seq"),
-        primary_key=True
-    )
+    pk = Column(Integer(), Sequence("%(table_name)s_id_seq"), primary_key=True)
 
 
 Base = declarative_base(
@@ -49,15 +41,14 @@ class Registry:
 
     def table_class_from_tablename(self, tablename: str) -> DeclarativeMeta:
         base = self._resolve_weakref(self._base)
-        assert issubclass(base, Base), \
-            "This method attempts to reverse the automatic " \
-            "naming done by this packages custom " \
-            "declarative Base." \
-            "When other baseclasses are used this process " \
+        assert issubclass(base, Base), (
+            "This method attempts to reverse the automatic "
+            "naming done by this packages custom "
+            "declarative Base."
+            "When other baseclasses are used this process "
             "does not work."
-        refs = {
-            gen_tablenames(c): c for c in self.tables.keys()
-        }
+        )
+        refs = {gen_tablenames(c): c for c in self.tables.keys()}
         classname = refs[tablename]
         return self._resolve_weakref(self.tables[classname])
 

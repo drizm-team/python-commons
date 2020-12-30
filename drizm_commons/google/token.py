@@ -22,7 +22,7 @@ def force_obtain_id_token(credentials: service_account.IDTokenCredentials) -> st
         access_token, *_ = id_token_jwt_grant(
             request,
             credentials._token_uri,  # noqa protected
-            assertion  # noqa expected type
+            assertion,  # noqa expected type
         )
     except google.auth.exceptions.RefreshError as exc:
         raise Exception(

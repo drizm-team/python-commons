@@ -50,16 +50,14 @@ class _IntrospectorInterface(ABC):
         remove_keys = (
             "metadata",  # ref to DeclarativeMeta
             "_decl_class_registry",  # declarative registry
-            "_sa_class_manager"  # class state manager
+            "_sa_class_manager",  # class state manager
         )
         attrs = [
-            attr for attr in dir(
-                self.schema
-            ) if not is_dunder(
-                attr
-            ) and not callable(
-                getattr(self.schema, attr)
-            ) and attr not in remove_keys
+            attr
+            for attr in dir(self.schema)
+            if not is_dunder(attr)
+            and not callable(getattr(self.schema, attr))
+            and attr not in remove_keys
         ]
         return attrs
 
@@ -82,23 +80,15 @@ class _IntrospectorInterface(ABC):
         if include_pks:
             attrs_to_check.append("primary_key")
 
-        return [
-            c.name for c in self.columns if any(
-                [c.primary_key, c.unique]
-            )
-        ]
+        return [c.name for c in self.columns if any([c.primary_key, c.unique])]
 
     def foreign_keys(self, columns_only: bool = False) -> Union[list, dict]:
         foreign_keys = [c for c in self.columns if c.foreign_keys]
         fk_names = [key.name for key in foreign_keys]
         if columns_only:
             return fk_names
-        fk_targets = [
-            list(key.foreign_keys)[0].target_fullname for key in foreign_keys
-        ]
-        return {
-            name: target for name, target in zip(fk_names, fk_targets)
-        }
+        fk_targets = [list(key.foreign_keys)[0].target_fullname for key in foreign_keys]
+        return {name: target for name, target in zip(fk_names, fk_targets)}
 
 
 class _declBaseIntrospector(_IntrospectorInterface):
@@ -107,6 +97,7 @@ class _declBaseIntrospector(_IntrospectorInterface):
     These are objects you may get back when querying,
     using a Session or when constructing an instance yourself
     """
+
     def __init__(self, obj) -> None:
         super().__init__(obj)
         self.tablename = obj.__tablename__
@@ -120,9 +111,7 @@ class _declBaseIntrospector(_IntrospectorInterface):
     @property
     def column_attrs(self):
         attrs = super().column_attrs
-        remove_keys = (
-            "_sa_instance_state",  # instance session state manager
-        )
+        remove_keys = ("_sa_instance_state",)  # instance session state manager
         return [attr for attr in attrs if attr not in remove_keys]
 
 
