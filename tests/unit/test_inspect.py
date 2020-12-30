@@ -7,7 +7,7 @@ from drizm_commons.sqla.inspect import (
     _declClassIntrospector,
     _tblIntrospector
 )
-from drizm_commons.utils import (
+from drizm_commons.testing.truthiness import (
     all_items_equal,
     all_nested_zipped_equal,
     all_items_present
@@ -92,4 +92,3 @@ class TestIntrospection:
         for method in method_list:
             results = [getattr(cls, method)() for cls in introspectors]
             assert all_nested_zipped_equal(results)
- 
