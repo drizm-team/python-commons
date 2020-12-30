@@ -9,7 +9,7 @@ from typing import Optional
 
 
 def get_absolute_root_path() -> str:
-    """ Return the absolute path to the project root directory """
+    """ Return the absolute path to the project root directory. """
     caller_root_path = None
 
     # This is for apps like PyCharm, that by default,
@@ -30,15 +30,18 @@ def get_absolute_root_path() -> str:
             path_to_check = pathlib.Path(path)
             # Cut the reference path to the same length as the sys.path we are
             # currently checking, in case the reference path is above the current one
-            current_module_cut_to_match = pathlib.Path(
-                current_module
-            ).parts[:len(path_to_check.parts)]
+            current_module_cut_to_match = pathlib.Path(current_module).parts[
+                : len(path_to_check.parts)
+            ]
 
             # Return the first absolute path, that is a directory and contains
             # the reference path without containing pydev.
             # This is because pydev always contains the string 'pydev' and is often
             # from a completely different root path, which makes it easy to check for
-            if current_module_cut_to_match == path_to_check.parts and "pydev" not in path:
+            if (
+                current_module_cut_to_match == path_to_check.parts
+                and "pydev" not in path
+            ):
                 if not os.path.isfile(path) and os.path.isabs(path):
                     caller_root_path = path
                     break
@@ -84,10 +87,12 @@ def get_absolute_root_path() -> str:
             #   and this function has ben called from myproject/foo/bar/mymodule.py
             #   this will be "foo/bar"
             # )
-            project_related_folders = caller_path.replace(os.sep + caller_module_name, '')
+            project_related_folders = caller_path.replace(
+                os.sep + caller_module_name, ""
+            )
 
             # fix root path by removing the undesired subpath
-            caller_root_path = caller_root_path.replace(project_related_folders, '')
+            caller_root_path = caller_root_path.replace(project_related_folders, "")
 
     root_path = pathlib.Path(caller_root_path)
 
@@ -104,12 +109,30 @@ def get_absolute_root_path() -> str:
 
 
 def get_root_path_dirname() -> str:
+    """ Return the name of the project root directory. """
     return pathlib.Path(get_absolute_root_path()).name
 
 
 # this is necessary because we can only subclass the concrete implementation
 class Path(type(pathlib.Path())):
+    """
+    A subclass of pathlib.Path.
+
+    With the exception of the overridden methods,
+    the behaviour is identical to that of its superclass.
+    """
+
     def rmdir(self, recursive: Optional[bool] = True) -> None:
+        """
+        Remove this directory.
+        By default, this method will recursively delete
+        all contents of this directory.
+
+        Arguments:
+            recursive: If `False`, will only delete the directory
+                if it is empty. Otherwise it will recursively
+                delete its contents.
+        """
         if recursive:
             shutil.rmtree(self)
         else:
