@@ -5,6 +5,8 @@ theme:
   name: material
   icon:
     repo: fontawesome/brands/github
+  palette:
+    scheme: slate
 
 markdown_extensions:
   - pymdownx.highlight
@@ -35,5 +37,6 @@ nav:
     - Generating Test Data:
       - "Primitive Data": faking.md
     - Terraform Utilities: terraform.md
+    - SQLAlchemy Utilities: sqla.md
     - Cookbook: cookbook.md
     - Changelog: changes.md
