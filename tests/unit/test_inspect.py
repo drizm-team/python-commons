@@ -1,6 +1,5 @@
 import pytest
 
-from tests.conftest import User
 from drizm_commons.sqla.inspect import (
     SQLAIntrospector,
     _declBaseIntrospector,
@@ -12,23 +11,6 @@ from drizm_commons.testing.truthiness import (
     all_nested_zipped_equal,
     all_items_present
 )
-
-
-@pytest.fixture(scope="class")
-def _get_test_data(request, get_db):
-    self = request.cls
-    self.declarative_class = User
-    user = User(
-        name="Test User",
-        age=29
-    )
-    self.declarative_instance = user
-    with get_db.Session() as sess:
-        sess.add(user)
-    with get_db.Session() as sess:
-        self.table_instance = sess.query(
-            self.declarative_class
-        ).filter_by(pk=1).first().__table__
 
 
 @pytest.mark.usefixtures("_get_test_data")
