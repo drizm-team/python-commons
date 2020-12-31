@@ -23,7 +23,10 @@ but you may still download,
 redistribute or modify it to your liking.
 
 **Author:**  
-Ben "ThaRising" Koch
+[Ben "ThaRising" Koch](https://github.com/ThaRising)
+
+**Maintainers:**  
+[Dominik Lewandowski](https://github.com/dominik-lewandowski)
 
 ## Requirements
 
