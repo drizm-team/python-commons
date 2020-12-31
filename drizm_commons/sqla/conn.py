@@ -10,6 +10,7 @@ from .base import Base
 
 
 class Database:
+    """ A simplified connection interface for an SQLAlchemy engine. """
     __slots__ = ["engine", "_Session"]
     _Session: sessionmaker
     logger: ClassVar[Logger] = getLogger(__name__)

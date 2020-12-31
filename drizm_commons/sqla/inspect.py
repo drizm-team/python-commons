@@ -1,8 +1,16 @@
+"""
+Introspection for various SQLAlchemy objects.
+
+````python
+from drizm_commons.inspect import SQLAIntrospector
+````
+"""
 from abc import ABC, abstractmethod
 from inspect import isclass
-from typing import Union, Optional
+from typing import Union, Optional, List, Type
 
 from sqlalchemy import Table
+from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.inspection import inspect
 from sqlalchemy.orm.exc import UnmappedClassError
 from sqlalchemy.orm.util import class_mapper
@@ -10,8 +18,17 @@ from sqlalchemy.orm.util import class_mapper
 from ..testing.truthiness import is_dunder
 
 
-def is_mapped_class(cls) -> bool:
-    """ Check whether a given class has been mapped by SQLAlchemy """
+def is_mapped_class(cls: Type[DeclarativeMeta]) -> bool:
+    """
+    Check whether a given class has been mapped by SQLAlchemy.
+
+    Arguments:
+        cls: The declarative class to be checked for mapping.
+
+    Returns:
+        `True` if the class is a mapped SQLAlchemy declarative
+            class, else `False`.
+    """
     if not isclass(cls):
         return False
 
@@ -23,7 +40,7 @@ def is_mapped_class(cls) -> bool:
         return True
 
 
-class _IntrospectorInterface(ABC):
+class SQLAIntrospectorInterface(ABC):
     tablename: str
     columns: dict
     __table__: Table
@@ -33,12 +50,12 @@ class _IntrospectorInterface(ABC):
 
     @property
     @abstractmethod
-    def classname(self):
-        """ Name of the Declarative Base class if available """
+    def classname(self) -> str:
+        """ Name of the Declarative Base class if available. """
         pass
 
     @property
-    def column_attrs(self):
+    def column_attrs(self) -> List[str]:
         """
         Outputs all attributes of a mapped class,
         except for properties, dunders and methods, as well as
@@ -65,8 +82,9 @@ class _IntrospectorInterface(ABC):
         """
         Return a list of the names of all primary key columns of the model.
 
-        :param retrieve_constraint: If this is set to true,
-        the actual SQLA constraint objects will be returned as a list
+        Arguments:
+            retrieve_constraint: If set to `True`,
+                the actual SQLA constraint objects will be returned as a list
         """
         constraints = inspect(self.__table__).primary_key
         if retrieve_constraint:
@@ -74,7 +92,17 @@ class _IntrospectorInterface(ABC):
 
         return [c.key for c in constraints.columns]
 
-    def unique_keys(self, include_pks: Optional[bool] = True) -> list:
+    def unique_keys(self, include_pks: Optional[bool] = True) -> List[str]:
+        """
+        Obtains all unique key column names of the object.
+
+        Arguments:
+            include_pks: If set `False`, this will not include primary-key
+                columns in the selection.
+
+        Return:
+            A list of column names, that have a unique constraint on them.
+        """
         attrs_to_check = ["unique"]
 
         if include_pks:
@@ -83,15 +111,28 @@ class _IntrospectorInterface(ABC):
         return [c.name for c in self.columns if any([c.primary_key, c.unique])]
 
     def foreign_keys(self, columns_only: bool = False) -> Union[list, dict]:
+        """
+        Retrieves the names and targets of foreign key columns on the table.
+
+        Arguments:
+            columns_only: If `True`, this will only obtain the names
+                of the columns.
+
+        Returns:
+            Either a list of column names or a dictionary of column
+                names and Foreign key targets.
+        """
         foreign_keys = [c for c in self.columns if c.foreign_keys]
         fk_names = [key.name for key in foreign_keys]
+
         if columns_only:
             return fk_names
+
         fk_targets = [list(key.foreign_keys)[0].target_fullname for key in foreign_keys]
         return {name: target for name, target in zip(fk_names, fk_targets)}
 
 
-class _declBaseIntrospector(_IntrospectorInterface):
+class _declBaseIntrospector(SQLAIntrospectorInterface):
     """
     Inspect Declarative Base class instances.
     These are objects you may get back when querying,
@@ -115,7 +156,7 @@ class _declBaseIntrospector(_IntrospectorInterface):
         return [attr for attr in attrs if attr not in remove_keys]
 
 
-class _declClassIntrospector(_IntrospectorInterface):
+class _declClassIntrospector(SQLAIntrospectorInterface):
     def __init__(self, obj) -> None:
         super().__init__(obj)
         self.tablename = obj.__tablename__
@@ -127,7 +168,7 @@ class _declClassIntrospector(_IntrospectorInterface):
         return self.schema.__name__
 
 
-class _tblIntrospector(_IntrospectorInterface):
+class _tblIntrospector(SQLAIntrospectorInterface):
     def __init__(self, obj: Table) -> None:
         super().__init__(obj)
         self.tablename = obj.name
@@ -149,9 +190,21 @@ class _tblIntrospector(_IntrospectorInterface):
         )
 
 
-def SQLAIntrospector(o):
-    """ Factory returning a matching introspector class """
+def SQLAIntrospector(
+    o: Union[DeclarativeMeta, Table, Type[DeclarativeMeta]]
+) -> SQLAIntrospectorInterface:
+    """
+    Factory returning a matching introspector class.
+
+    Arguments:
+        o: Any applicable SQLAlchemy table representation, such as a
+            Declarative- class, instance or a standard table object.
+
+    Returns:
+        A matching introspector class for the provided object.
+    """
     err_msg = "Class of type {0} is not supported for introspection"
+
     if isinstance(o, Table):
         return _tblIntrospector(o)
 
@@ -159,6 +212,7 @@ def SQLAIntrospector(o):
         if is_mapped_class(o):
             return _declClassIntrospector(o)
         raise TypeError(err_msg.format(type(o)))
+
     else:
         if is_mapped_class(o.__class__):
             return _declBaseIntrospector(o)
