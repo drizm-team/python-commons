@@ -1,0 +1,1340 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>SQLAlchemy Utilities - Drizm Commons</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sqlalchemy-utilities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Drizm Commons" class="md-header-nav__button md-logo" aria-label="Drizm Commons">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Drizm Commons
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              SQLAlchemy Utilities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/drizm-team/python-commons/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    drizm/python-commons
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Drizm Commons" class="md-nav__button md-logo" aria-label="Drizm Commons">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Drizm Commons
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/drizm-team/python-commons/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    drizm/python-commons
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      Utilities
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utilities" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Utilities
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../utils/" class="md-nav__link">
+      General Utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../testing/" class="md-nav__link">
+      Testing Utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../types/" class="md-nav__link">
+      Custom Types
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Generating Test Data
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Generating Test Data" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Generating Test Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../faking/" class="md-nav__link">
+      Primitive Data
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../terraform/" class="md-nav__link">
+      Terraform Utilities
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        SQLAlchemy Utilities
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      SQLAlchemy Utilities
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode" class="md-nav__link">
+    encode
+  </a>
+  
+    <nav class="md-nav" aria-label="encode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder" class="md-nav__link">
+    SqlaDeclarativeEncoder
+  </a>
+  
+    <nav class="md-nav" aria-label="SqlaDeclarativeEncoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.default" class="md-nav__link">
+    default()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.dump" class="md-nav__link">
+    dump()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.handle_failure" class="md-nav__link">
+    handle_failure()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.serialize_datetypes_to_iso" class="md-nav__link">
+    serialize_datetypes_to_iso()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect" class="md-nav__link">
+    inspect
+  </a>
+  
+    <nav class="md-nav" aria-label="inspect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface" class="md-nav__link">
+    SQLAIntrospectorInterface
+  </a>
+  
+    <nav class="md-nav" aria-label="SQLAIntrospectorInterface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.classname" class="md-nav__link">
+    classname
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.column_attrs" class="md-nav__link">
+    column_attrs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.foreign_keys" class="md-nav__link">
+    foreign_keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.primary_keys" class="md-nav__link">
+    primary_keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.unique_keys" class="md-nav__link">
+    unique_keys()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.is_mapped_class" class="md-nav__link">
+    is_mapped_class()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospector" class="md-nav__link">
+    SQLAIntrospector()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database" class="md-nav__link">
+    Database
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.create" class="md-nav__link">
+    create()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.destroy" class="md-nav__link">
+    destroy()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.override_engine" class="md-nav__link">
+    override_engine()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.Session" class="md-nav__link">
+    Session()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../google/" class="md-nav__link">
+      GCP Utilities
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../cookbook/" class="md-nav__link">
+      Cookbook
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../changes/" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode" class="md-nav__link">
+    encode
+  </a>
+  
+    <nav class="md-nav" aria-label="encode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder" class="md-nav__link">
+    SqlaDeclarativeEncoder
+  </a>
+  
+    <nav class="md-nav" aria-label="SqlaDeclarativeEncoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.default" class="md-nav__link">
+    default()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.dump" class="md-nav__link">
+    dump()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.handle_failure" class="md-nav__link">
+    handle_failure()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.encode.SqlaDeclarativeEncoder.serialize_datetypes_to_iso" class="md-nav__link">
+    serialize_datetypes_to_iso()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect" class="md-nav__link">
+    inspect
+  </a>
+  
+    <nav class="md-nav" aria-label="inspect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface" class="md-nav__link">
+    SQLAIntrospectorInterface
+  </a>
+  
+    <nav class="md-nav" aria-label="SQLAIntrospectorInterface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.classname" class="md-nav__link">
+    classname
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.column_attrs" class="md-nav__link">
+    column_attrs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.foreign_keys" class="md-nav__link">
+    foreign_keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.primary_keys" class="md-nav__link">
+    primary_keys()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospectorInterface.unique_keys" class="md-nav__link">
+    unique_keys()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.is_mapped_class" class="md-nav__link">
+    is_mapped_class()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.inspect.SQLAIntrospector" class="md-nav__link">
+    SQLAIntrospector()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database" class="md-nav__link">
+    Database
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.create" class="md-nav__link">
+    create()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.destroy" class="md-nav__link">
+    destroy()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.override_engine" class="md-nav__link">
+    override_engine()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drizm_commons.sqla.conn.Database.Session" class="md-nav__link">
+    Session()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/drizm-team/python-commons/edit/master/docs/sqla.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="sqlalchemy-utilities">SQLAlchemy Utilities</h1>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="drizm_commons.sqla.encode">
+
+        <code>drizm_commons.sqla.encode</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>SQLAlchemy declarative compatible JSON encoder.</p>
+<div class="highlight">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">drizm_commons.sqla.encode</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre>
+</div>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.encode.SqlaDeclarativeEncoder">
+
+        <code>SqlaDeclarativeEncoder</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>A custom JSON encoder for serializing SQLAlchemy
+declarative base instances.</p>
+<p>Supports ISO8601 compliant datetime encoding.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.encode.SqlaDeclarativeEncoder.default">
+
+        <code class="highlight language-python">
+default<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Implement this method in a subclass such that it returns
+a serializable object for <code>o</code>, or calls the base implementation
+(to raise a <code>TypeError</code>).</p>
+<p>For example, to support arbitrary iterators, you could
+implement default like this::</p>
+<div class="highlight">
+<pre><span></span><code>def default(self, o):
+    !!! try
+        iterable = iter(o)
+    except TypeError:
+        pass
+    !!! else
+        return list(iterable)
+    # Let the base class default method raise the TypeError
+    return JSONEncoder.default(self, o)
+</code></pre>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.encode.SqlaDeclarativeEncoder.dump">
+
+        <code class="highlight language-python">
+dump<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Hook for custom object deserialization. </p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.encode.SqlaDeclarativeEncoder.handle_failure">
+
+        <code class="highlight language-python">
+handle_failure<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Can be overridden to provide handling for custom fields. </p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.encode.SqlaDeclarativeEncoder.serialize_datetypes_to_iso">
+
+        <code class="highlight language-python">
+serialize_datetypes_to_iso<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Converts datetime formats to ISO8601 compliant strings. </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="drizm_commons.sqla.inspect">
+
+        <code>drizm_commons.sqla.inspect</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>Introspection for various SQLAlchemy objects.</p>
+<div class="highlight">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">drizm_commons.inspect</span> <span class="kn">import</span> <span class="n">SQLAIntrospector</span>
+</code></pre>
+</div>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospectorInterface">
+
+        <code>SQLAIntrospectorInterface</code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospectorInterface.classname">
+
+        <code class="highlight">
+classname: <span class="nb">str</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-property"><code>property</code></small>
+      <small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Name of the Declarative Base class if available. </p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospectorInterface.column_attrs">
+
+        <code class="highlight">
+column_attrs: <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-property"><code>property</code></small>
+      <small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+  </span>
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Outputs all attributes of a mapped class,
+except for properties, dunders and methods, as well as
+some of the SQLAlchemy specific attributes.</p>
+<p>This will include all columns that SQLAlchemy uses,
+but also attributes that the user has placed themselves.</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospectorInterface.foreign_keys">
+
+        <code class="highlight language-python">
+foreign_keys<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Retrieves the names and targets of foreign key columns on the table.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>columns_only</code></td>
+<td><code>bool</code></td>
+<td>
+<p>If <code>True</code>, this will only obtain the names
+of the columns.</p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Union[list, dict]</code></td>
+<td>
+<p>Either a list of column names or a dictionary of column
+    names and Foreign key targets.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospectorInterface.primary_keys">
+
+        <code class="highlight language-python">
+primary_keys<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">retrieve_constraint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Return a list of the names of all primary key columns of the model.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>retrieve_constraint</code></td>
+<td><code>Optional[bool]</code></td>
+<td>
+<p>If set to <code>True</code>,
+the actual SQLA constraint objects will be returned as a list</p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospectorInterface.unique_keys">
+
+        <code class="highlight language-python">
+unique_keys<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_pks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>        </code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Obtains all unique key column names of the object.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include_pks</code></td>
+<td><code>Optional[bool]</code></td>
+<td>
+<p>If set <code>False</code>, this will not include primary-key
+columns in the selection.</p>
+</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>List[str]</code></td>
+<td>
+<p>A list of column names, that have a unique constraint on them.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.inspect.is_mapped_class">
+
+        <code class="highlight language-python">
+is_mapped_class<span class="p">(</span><span class="bp">cls</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Check whether a given class has been mapped by SQLAlchemy.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cls</code></td>
+<td><code>Type[sqlalchemy.ext.declarative.api.DeclarativeMeta]</code></td>
+<td>
+<p>The declarative class to be checked for mapping.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the class is a mapped SQLAlchemy declarative
+    class, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.inspect.SQLAIntrospector">
+
+        <code class="highlight language-python">
+SQLAIntrospector<span class="p">(</span><span class="n">o</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Factory returning a matching introspector class.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>o</code></td>
+<td><code>Union[sqlalchemy.ext.declarative.api.DeclarativeMeta, sqlalchemy.sql.schema.Table, Type[sqlalchemy.ext.declarative.api.DeclarativeMeta]]</code></td>
+<td>
+<p>Any applicable SQLAlchemy table representation, such as a
+Declarative- class, instance or a standard table object.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SQLAIntrospectorInterface</code></td>
+<td>
+<p>A matching introspector class for the provided object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="drizm_commons.sqla.conn.Database">
+
+        <code>drizm_commons.sqla.conn.Database</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>A simplified connection interface for an SQLAlchemy engine. </p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.conn.Database.create">
+
+        <code class="highlight language-python">
+create<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_override</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Creates all tables in the current Base </p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.conn.Database.destroy">
+
+        <code class="highlight language-python">
+destroy<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_override</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Destroys all tables in the current Base </p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.conn.Database.override_engine">
+
+        <code class="highlight language-python">
+override_engine<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Provides an option to manually override the auto-specced engine.</p>
+<p>:param uri: Database URI
+:param kwargs: Normal kwargs as provided to the create_engine factory</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="drizm_commons.sqla.conn.Database.Session">
+
+        <code class="highlight language-python">
+Session<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Provides access to a scoped ORM Session </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../terraform/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Terraform Utilities
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../google/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GCP Utilities
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            This package and its documentation are licensed under the MIT License.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1180 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-6.2.3" name="generator"/>
+<title>Testing Utilities - Drizm Commons</title>
+<link href="../assets/stylesheets/main.3b61ea93.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.39b8e14a.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#testing-utilities">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="Drizm Commons" class="md-header-nav__button md-logo" href=".." title="Drizm Commons">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<div class="md-header-nav__topic">
+<span class="md-ellipsis">
+            Drizm Commons
+          </span>
+</div>
+<div class="md-header-nav__topic">
+<span class="md-ellipsis">
+            
+              Testing Utilities
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/drizm-team/python-commons/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    drizm/python-commons
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Drizm Commons" class="md-nav__button md-logo" href=".." title="Drizm Commons">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+    Drizm Commons
+  </label>
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/drizm-team/python-commons/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    drizm/python-commons
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+      Overview
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2">
+      Utilities
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Utilities" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-2">
+<span class="md-nav__icon md-icon"></span>
+        Utilities
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../utils/">
+      General Utilities
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        Testing Utilities
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+      Testing Utilities
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.biased">
+    biased
+  </a>
+<nav aria-label="biased" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.biased.self_to_id">
+    self_to_id()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.conversion">
+    conversion
+  </a>
+<nav aria-label="conversion" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.conversion.image_file_to_b64">
+    image_file_to_b64()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness">
+    truthiness
+  </a>
+<nav aria-label="truthiness" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_items_equal">
+    all_items_equal()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_items_present">
+    all_items_present()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_keys_present">
+    all_keys_present()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_nested_zipped_equal">
+    all_nested_zipped_equal()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_class_method">
+    is_class_method()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_dunder">
+    is_dunder()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_instance_method">
+    is_instance_method()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_static_method">
+    is_static_method()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.uri_is_http">
+    uri_is_http()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.uuid4_is_valid">
+    uuid4_is_valid()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../types/">
+      Custom Types
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
+<label class="md-nav__link" for="nav-3">
+      Generating Test Data
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Generating Test Data" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-3">
+<span class="md-nav__icon md-icon"></span>
+        Generating Test Data
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../faking/">
+      Primitive Data
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../terraform/">
+      Terraform Utilities
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../sqla/">
+      SQLAlchemy Utilities
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../google/">
+      GCP Utilities
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cookbook/">
+      Cookbook
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../changes/">
+      Changelog
+    </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.biased">
+    biased
+  </a>
+<nav aria-label="biased" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.biased.self_to_id">
+    self_to_id()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.conversion">
+    conversion
+  </a>
+<nav aria-label="conversion" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.conversion.image_file_to_b64">
+    image_file_to_b64()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness">
+    truthiness
+  </a>
+<nav aria-label="truthiness" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_items_equal">
+    all_items_equal()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_items_present">
+    all_items_present()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_keys_present">
+    all_keys_present()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.all_nested_zipped_equal">
+    all_nested_zipped_equal()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_class_method">
+    is_class_method()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_dunder">
+    is_dunder()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_instance_method">
+    is_instance_method()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.is_static_method">
+    is_static_method()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.uri_is_http">
+    uri_is_http()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#drizm_commons.testing.truthiness.uuid4_is_valid">
+    uuid4_is_valid()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/drizm-team/python-commons/edit/master/docs/testing.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="testing-utilities">Testing Utilities</h1>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="drizm_commons.testing.biased">
+<code>drizm_commons.testing.biased</code>
+</h2>
+<div class="doc doc-contents first">
+<p>Contains utilities that are specifically
+biased towards certain Drizm organization standards.</p>
+<div class="highlight">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">drizm_commons.testing.biased</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre>
+</div>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.biased.self_to_id">
+<code class="highlight language-python">
+self_to_id<span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">force_str</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Extracts the ID from a Drizm-HATEOAS compliant response body.</p>
+<p>Example body:</p>
+<div class="highlight">
+<pre><span></span><code><span class="p">{</span>
+    <span class="nt">"self"</span><span class="p">:</span> <span class="p">{</span><span class="nt">"href"</span><span class="p">:</span> <span class="s2">"http://example.net/resources/1/"</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>For the above body, the returned value would be 1.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td><code>Dict[str, Union[str, dict]]</code></td>
+<td>
+<p>The JSONified response body.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>force_str</code></td>
+<td><code>Optional[bool]</code></td>
+<td>
+<p>If <code>True</code>, will always output a string,
+the default behaviour is to try and guess the correct type,
+which can be either a String (e.g. UUID),
+or an Integer (Numeric IDs).</p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Union[str, int]</code></td>
+<td>
+<p>The extracted identifier.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="drizm_commons.testing.conversion">
+<code>drizm_commons.testing.conversion</code>
+</h2>
+<div class="doc doc-contents first">
+<p>Contains utilities for the conversion of data.</p>
+<div class="highlight">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">drizm_commons.testing.conversion</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre>
+</div>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.conversion.image_file_to_b64">
+<code class="highlight language-python">
+image_file_to_b64<span class="p">(</span><span class="n">image_file</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Encodes an image file as Base64.</p>
+<p>To obtain the stringified Base64 version of the image,
+you can convert the output like so:</p>
+<div class="highlight">
+<pre><span></span><code><span class="n">image_file_to_b64</span><span class="p">(</span><span class="n">my_image_file</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</code></pre>
+</div>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image_file</code></td>
+<td><code>BytesIO</code></td>
+<td>
+<p>The BytesIO file object to be converted.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bytes</code></td>
+<td>
+<p>Bytes representation of the Base64 encoded image.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<h2 class="doc doc-heading" id="drizm_commons.testing.truthiness">
+<code>drizm_commons.testing.truthiness</code>
+</h2>
+<div class="doc doc-contents first">
+<p>Contains utilities to check for the
+truthiness of assertions.</p>
+<div class="highlight">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">drizm_commons.testing.truthiness</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre>
+</div>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.all_items_equal">
+<code class="highlight language-python">
+all_items_equal<span class="p">(</span><span class="n">sequence</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check whether all hashable items in a sequence are equal.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sequence</code></td>
+<td><code>Sequence[Hashable]</code></td>
+<td>
+<p>A sequence of hashables to be checked.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if all items in the sequence are equal, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.all_items_present">
+<code class="highlight language-python">
+all_items_present<span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check whether all provided <code>values</code> are present at any index
+in the provided <code>sequence</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sequence</code></td>
+<td><code>Sequence[Hashable]</code></td>
+<td>
+<p>An iterable of Hashable values to check for values in.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><code>Sequence[Hashable]</code></td>
+<td>
+<p>An iterable of Hashable values for whose presence to
+check <code>sequence</code> for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if all <code>values</code> are present somewhere in <code>sequence</code>,
+    else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.all_keys_present">
+<code class="highlight language-python">
+all_keys_present<span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Checks whether all provided keys are present in the dictionary.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dictionary</code></td>
+<td><code>Dict[Hashable, Any]</code></td>
+<td>
+<p>The dictionary to be checked.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>keys</code></td>
+<td><code>Sequence[Hashable]</code></td>
+<td>
+<p>A sequence of hashable values to be searched for.
+Must not contain any duplicate values.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td><code>Optional[bool]</code></td>
+<td>
+<p>If <code>True</code>, this will check that the provided
+keys 1:1 match the keys in the dictionary.</p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if all provided keys were found in the dictionary,
+    <code>False</code> otherwise.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.all_nested_zipped_equal">
+<code class="highlight language-python">
+all_nested_zipped_equal<span class="p">(</span><span class="n">sequence</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check whether all items, at the same indexes,
+in a nested sequence are equal.</p>
+<p>For example:</p>
+<div class="highlight">
+<pre><span></span><code><span class="n">example_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="n">all_nested_zipped_equal</span><span class="p">(</span><span class="n">example_list</span><span class="p">)</span>
+</code></pre>
+</div>
+<p>Is the same as:
+<div class="highlight">
+<pre><span></span><code><span class="n">example_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">example_list</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">example_list</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</code></pre>
+</div>
+</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sequence</code></td>
+<td><code>Sequence[Sequence]</code></td>
+<td>
+<p>A nested sequence to be checked.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the contents of the nested
+    sequences are equal, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.is_class_method">
+<code class="highlight language-python">
+is_class_method<span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check if the attribute of the passed <code>klass</code>
+is a <code>@classmethod</code>.</p>
+<p>This is a strict check, meaning it actually checks for the
+<code>@classmethod</code> descriptor.</p>
+<p>Credit for this implementation goes to:
+https://stackoverflow.com/a/19228282`.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>klass</code></td>
+<td><code></code></td>
+<td>
+<p>Class object or instance to check for the attribute on.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>Name of the attribute to check for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the method is a classmethod, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.is_dunder">
+<code class="highlight language-python">
+is_dunder<span class="p">(</span><span class="n">name</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check whether a given attribute name
+is a dunder, e.g. <code>__name__</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>The provided attribute name.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if <code>name</code> is a valid dunder, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.is_instance_method">
+<code class="highlight language-python">
+is_instance_method<span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check if the attribute of the passed <code>klass</code>
+is an instance method.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>klass</code></td>
+<td><code></code></td>
+<td>
+<p>Class object or instance to check for the attribute on.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>Name of the attribute to check for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the method is an instance method, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.is_static_method">
+<code class="highlight language-python">
+is_static_method<span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check if the attribute of the passed <code>klass</code>
+is a <code>@staticmethod</code>.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>klass</code></td>
+<td><code></code></td>
+<td>
+<p>Class object or instance to check for the attribute on.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>
+<p>Name of the attribute to check for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the method is a staticmethod, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.uri_is_http">
+<code class="highlight language-python">
+uri_is_http<span class="p">(</span><span class="n">uri</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check whether a string is a valid HTTP URI.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uri</code></td>
+<td><code>str</code></td>
+<td>
+<p>The string to check.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the string is a valid URI, <code>False</code> otherwise.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="drizm_commons.testing.truthiness.uuid4_is_valid">
+<code class="highlight language-python">
+uuid4_is_valid<span class="p">(</span><span class="n">value</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check whether a given string is a valid UUIDv4.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>str</code></td>
+<td>
+<p>The string to be tested.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>True</code> if the string is a valid UUIDv4, else <code>False</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../utils/" rel="prev">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                General Utilities
+              </div>
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../types/" rel="next">
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Custom Types
+              </div>
+</div>
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+            This package and its documentation are licensed under the MIT License.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+<script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+<script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+</body>
+</html>
