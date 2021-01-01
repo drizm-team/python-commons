@@ -13,3 +13,4 @@ __pycache__
 # Exclude build files
 dist
 *.egg-info
+site
