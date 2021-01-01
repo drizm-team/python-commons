@@ -16,8 +16,12 @@
 </p>
 
 ---
-Documentation:  
-https://commons.python.drizm.com/
+
+**Documentation:**  
+<a href="https://commons.python.drizm.com/" target="_blank">
+https://commons.python.drizm.com
+</a>
+
 ---
 
 This package contains shared code used by
