@@ -5,7 +5,7 @@ import shutil
 import sys
 from inspect import FrameInfo
 from typing import List
-from typing import Optional
+from typing import Optional, Union
 
 
 def get_absolute_root_path() -> str:
@@ -114,11 +114,14 @@ def get_root_path_dirname() -> str:
 
 
 # this is necessary because we can only subclass the concrete implementation
-class Path(type(pathlib.Path())):
+PATH_IMPL: Union[pathlib.WindowsPath, pathlib.PosixPath] = type(pathlib.Path())
+
+
+class Path(PATH_IMPL):
     """
     A subclass of pathlib.Path.
 
-    With the exception of the overridden methods,
+    With the exception of the below listed, overridden methods,
     the behaviour is identical to that of its superclass.
     """
 
