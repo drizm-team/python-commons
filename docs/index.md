@@ -56,7 +56,7 @@ The following features are supported:
 | General Utilities          | -           | -           |
 | Testing Utilities          | -           | -           |
 
-All feature-sets without an extra extra-name,
+All feature-sets without an addition "extra-name",
 are included in the minimal installation.
 
 ## Installation
