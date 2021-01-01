@@ -18,7 +18,7 @@
 ---
 
 **Documentation:**  
-<a href="https://commons.python.drizm.com/" target="_blank">
+<a href="https://python-commons.drizm.com/" target="_blank">
 https://commons.python.drizm.com
 </a>
 
