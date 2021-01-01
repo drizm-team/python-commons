@@ -15,14 +15,35 @@ def construct_service_authentication_request() -> Request:
 
 
 def force_obtain_id_token(credentials: service_account.IDTokenCredentials) -> str:
-    """ Manually forces the equivalent of credentials.refresh() """
+    """
+    Can be used to obtain an OIDC-Token for authenticating
+    to GoogleCloud services and some Google APIs.
+
+    This is effectively manually forcing the equivalent of `credentials.refresh()`.
+
+    Examples:
+        ```python
+        from drizm_commons.google import force_obtain_id_token
+        from google.oauth2 import service_account
+
+
+        auth = service_account.IDTokenCredentials.from_service_account_file(
+            "/path/to/svc.json",
+            target_audience="https://example.com/"
+        )
+        token = force_obtain_id_token(auth)
+        ```
+
+    Returns:
+        Returns a Google OpenID-Connect access token as a string.
+    """
     assertion = credentials._make_authorization_grant_assertion()  # noqa protected
     request = construct_service_authentication_request()
     try:
         access_token, *_ = id_token_jwt_grant(
             request,
             credentials._token_uri,  # noqa protected
-            assertion  # noqa expected type
+            assertion,  # noqa expected type
         )
     except google.auth.exceptions.RefreshError as exc:
         raise Exception(
@@ -31,3 +52,6 @@ def force_obtain_id_token(credentials: service_account.IDTokenCredentials) -> st
             " for the Credentials object."
         ) from exc
     return access_token
+
+
+__all__ = ["force_obtain_id_token", "construct_service_authentication_request"]

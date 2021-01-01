@@ -10,24 +10,28 @@ from .base import Base
 
 
 class Database:
+    """ A simplified connection interface for an SQLAlchemy engine. """
     __slots__ = ["engine", "_Session"]
     _Session: sessionmaker
-    logger: ClassVar[Logger] = getLogger()
+    logger: ClassVar[Logger] = getLogger(__name__)
 
-    def __init__(self, /,
-                 conn_args: dict = None, *,
-                 dialect: str = None,
-                 host: str = None,
-                 username: str = None,
-                 password: str = None,
-                 port: int = None,
-                 database_name: str = None,
-                 extra_engine_args: dict = None) -> None:
+    def __init__(
+        self,
+        /,
+        conn_args: dict = None,
+        *,
+        dialect: str = None,
+        host: str = None,
+        username: str = None,
+        password: str = None,
+        port: int = None,
+        database_name: str = None,
+        extra_engine_args: dict = None,
+    ) -> None:
         kwargs = locals()
         kwargs.pop("conn_args")
         kwargs = {k: v for k, v in kwargs.items() if v}
-        assert kwargs or conn_args, \
-            "Specify either conn_args or one of the kwargs"
+        assert kwargs or conn_args, "Specify either conn_args or one of the kwargs"
         config = conn_args or kwargs
 
         uri, engine_args = self._get_connection_conf(config)
@@ -61,9 +65,8 @@ class Database:
         # This is the option for all other database types, such as Postgres or MySQL
         else:
             username, password, port, database = tuple(
-                config.get(attr, None) for attr in (
-                    "username", "password", "port", "database"
-                )
+                config.get(attr, None)
+                for attr in ("username", "password", "port", "database")
             )
             if not username and not port:
                 raise ValueError("Credentials and / or port missing")
@@ -98,9 +101,7 @@ class Database:
     def create(self, base_override=None) -> None:
         """ Creates all tables in the current Base """
         base = base_override or Base
-        self.logger.info(
-            f"Constructing Database: {str(self.engine.url)}"
-        )
+        self.logger.info(f"Constructing Database: {str(self.engine.url)}")
         for table in base.metadata.sorted_tables:
             self.logger.info(f"     {table.name}")
         base.metadata.create_all(bind=self.engine)
