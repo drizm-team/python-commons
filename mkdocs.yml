@@ -12,6 +12,8 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.inlinehilite
+  - pymdownx.details
+  - admonition
 
 plugins:
   - search

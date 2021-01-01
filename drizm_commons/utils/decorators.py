@@ -10,9 +10,10 @@ def memoize(fn):
 
     Only works for function with a single positional param.
 
-    This method is most likely **not thread-safe** and
-    is pretty **unsafe** in general, so only use this if you
-    know what you are doing.
+    !!! warning
+        This method is most likely **not thread-safe** and
+        is only recommended to be used for scripts that do not
+        rely on `threading` or `multiprocessing`.
 
     Example:
         ````python
@@ -35,7 +36,7 @@ def memoize(fn):
             res = fn(cache[0])
         except KeyError:
             raise TypeError(
-                f"Function {fn.__name__} missing positional argument"
+                f"Function {fn.__name__} missing positional argument."
             ) from None
         else:
             return res
@@ -63,8 +64,7 @@ def resolve_super_auto_resolution(fn):
     @wraps(fn)
     def injector(self, *args, **kwargs):
         # if the `__class__` variable is in the unbound variables list
-        # of the local function scope,
-        # that means it is an instance method,
+        # of the local function scope, that means it is an instance method,
         # otherwise this fix is not applicable.
         if "__class__" in (f := fn.__code__.co_freevars) and len(f) == 1:
             fn.__closure__[0].cell_contents = type(self)
