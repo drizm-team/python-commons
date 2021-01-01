@@ -40,5 +40,6 @@ nav:
       - "Primitive Data": faking.md
     - Terraform Utilities: terraform.md
     - SQLAlchemy Utilities: sqla.md
+    - GCP Utilities: google.md
     - Cookbook: cookbook.md
     - Changelog: changes.md
